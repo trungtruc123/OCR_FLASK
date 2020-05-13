@@ -5,18 +5,18 @@
   <h4><br /></h4>
 </head>
     <div class="container">
-    <form method="POST" action="/ocr">
+    <form >
       <div class="form-group">
         <form runat="server">
         <input type='file' accept="image/*" id="imgInp" name="raw_text" multiple/>
         </form>
-        <br/>
+        <!-- <br/>
         <input type='button' value ='convert' id ='btn' onclick="upload()" />
-        <img id ='preview' style="width: 1000px;height: 50px;"/>
+        <img id ='preview' style="width: 1000px;height: 50px;"/> -->
         <br/>
         <br/>
         <button type="reset" class="btn btn-primary"><i class="fa fa-eraser"></i> Clear</button>
-        <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
+        <button type="button" class="btn btn-info" onclick="upload()"><i class="fa fa-database"></i> Submit</button>
 
       </div>
     </form>
@@ -27,7 +27,7 @@
 
       <p class="input">Input image:</p>
         <div>{{raw_text}}</div>
-        <img id ='img_submit'/>
+        <img id= 'preview'/>
       <br />
       <p class="alert-heading">Predict:</p>
         <div>{{results}}</div>
@@ -40,7 +40,8 @@
       var x;
       function upload() {
         var file = document.getElementById("imgInp").files;
-        if (file.length > 0) {
+        console.log('file',file)
+        if (file.length >0) {
           var fileReader = new FileReader();
           fileReader.onload = function (event) {
             document

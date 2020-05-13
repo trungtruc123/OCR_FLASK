@@ -398,28 +398,27 @@ def loadmodel(weight_path):
     return model
 
 def predict(model, datapath, output, verbose=15):
-    # sess = tf.Session()
-    # K.set_session(sess)
-    # batch_size = 3
-    # models = glob.glob('{}/best_*.h5'.format(model))
-    # test_generator  = TextImageGenerator(datapath, None, *SIZE, batch_size, 32, None, False, MAX_LEN)
-    # test_generator.build_data() # sinh ra text ='' for each image
+    sess = tf.Session()
+    K.set_session(sess)
+    batch_size = 3
+    models = glob.glob('{}/best_*.h5'.format(model))
+    test_generator  = TextImageGenerator(datapath, None, *SIZE, batch_size, 32, None, False, MAX_LEN)
+    test_generator.build_data() # sinh ra text ='' for each image
     
-    # y_preds = []
-    # for weight_path in models:
+    y_preds = []
+    for weight_path in models:
         
-    #     print('load {}'.format(weight_path))
-    #     model = loadmodel(weight_path)
-    #     X_test = test_generator.imgs.transpose((0, 2, 1, 3))
-    #     y_pred = model.predict(X_test, batch_size=2)
-    #     y_preds.append(y_pred)
-    #     print(y_preds)
-    #     # for printing        
-    #     decoded_res = beamsearch(sess, y_pred[:verbose])
-        #for i in range(len(decoded_res)):
-           # print('{}: {}'.format(test_generator.img_dir[i], decoded_res[i]))
-            # return decoded_res[i]
-    return 'sjsnfns shfs '
+        print('load {}'.format(weight_path))
+        model = loadmodel(weight_path)
+        X_test = test_generator.imgs.transpose((0, 2, 1, 3))
+        y_pred = model.predict(X_test, batch_size=2)
+        y_preds.append(y_pred)
+        print(y_preds)
+        # for printing        
+        decoded_res = beamsearch(sess, y_pred[:verbose])
+        for i in range(len(decoded_res)):
+           print('{}: {}'.format(test_generator.img_dir[i], decoded_res[i]))
+           return decoded_res[i]
     # if(len(y_preds)!=0):    
     #     y_preds = np.prod(y_preds, axis=0)**(1.0/len(y_preds))
     #     y_texts = beamsearch(sess, y_preds)
@@ -441,6 +440,8 @@ def predict(model, datapath, output, verbose=15):
 #     predict(args.model, args.data, args.output)
 
 
-#predict("model/", "image_test2/","predict.json")
+A= predict("model/", "image_test2/","predict.json")
+print('type:', type(A))
+print('predict:', A)
 def test(image):
     return image
