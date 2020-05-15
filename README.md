@@ -5,7 +5,7 @@ Ngày nay, trí tuệ nhân tạo đang ngày càng thể hiện vai trò vô c�
 Trong số đó, xử lý ngôn ngữ tự nhiên đang trở thành một lĩnh vực "nóng", hứa hẹn sẽ ứng dụng rất nhiều vào cuộc sống con người.
 Dự án lần này sẽ xây dựng một hệ thống trong lĩnh vực nói trên với bài toán  nhận dạng chữ viết tay tiếng Việt, qua đó có thể áp dụng vào thực tiễn để giải quyết công việc nhập liệu các đơn khai chứng từ vào cơ sở dữ liệu.
 Hiện nay đã có nhiều phương pháp để giải quyết bài toán này, và với những ưu điểm vượt trội từ Deeplearning, dự án sẽ áp dụng phương pháp này vào đề tài của mình, với mong muốn đem lại kết quả tốt nhất có thể.
-<img src ='/display/form.png'>
+<img src ='/display/form.png' style ='margin: auto'>
 ## 2.1. Mục đích:
 Tạo ra một app, web với nhiệm vụ giúp các cán bộ nhân viên dễ dàng hơn trong việc sao lưu các dữ liệu vào hệ thống từ các form điền của người dùng. Tiết kiệm được thời gian, nguồn nhân lực. Các dữ liệu này được lưu một cách đồng bộ, thống nhất giúp việc truy xuất dữ liệu dễ dàng hơn
 ## 2.2. Mục tiêu:
