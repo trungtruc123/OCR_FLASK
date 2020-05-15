@@ -1,3 +1,4 @@
+
 # 1.OPTICAL CHARACTER RECOGNITION VIETNAMESE (Handwritten)
 ( Nhận diện nội dung trong form đăng kí)
 # 2. Giới thiệu đề tài
@@ -40,4 +41,3 @@ Sau này có thể phát  triển phần mềm có thể nhận diện được 
 - https://viblo.asia/p/ung-dung-deep-learning-cho-bai-toan-nhan-dien-chu-viet-ocr-bWrZnaeQKxw?fbclid=IwAR0JIJ3JT43wseHUasv9rQN9IpHoDKuut8BDVwnXwzCH3OxFqjRmwppZUB0
 - https://pbcquoc.github.io/vietnamese-ocr/?fbclid=IwAR2Xum1Gs5arhd6av8t10TgmDsGuWiG1Q6eRRyjjLubCACEsxPxhpB18iFk
 - https://viblo.asia/p/deep-learning-thiet-ke-module-ocr-cho-bai-toan-nhan-dien-chu-co-nhat-ban-building-ocr-module-for-kuzushiji-recognition-V3m5WPngKO7?fbclid=IwAR3qWOk7_Jx1vAyWMwv1hJqnGXAu5g3CvaBQ4_tTScQ8_jKp-ZokiXeSFk8
-
