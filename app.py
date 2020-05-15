@@ -1,43 +1,54 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, send_file
 import re
 import functions.address as address
-# <script>
-#     var x;
-#     function upload() {
-#       var file = document.getElementById("imgInp").files;
-#       if (file.length > 0) {
-#         var fileReader = new FileReader();
-#         fileReader.onload = function (event) {
-#           document
-#             .getElementById("preview")
-#             .setAttribute("src", event.target.result);
-#         };
-#       }
-#       fileReader.readAsDataURL(file[0]);
-#       x = file[0].name;
-#       return x;
-#     }
-#     console.log((x = upload()));
-# </script>
+from PIL import Image
+import numpy as np
+import json
+import io
+from tensorflow.keras.preprocessing.image import img_to_array
+import cv2 
+from werkzeug.utils import secure_filename
+path = '/home/truc/Desktop/OCR_FLASK/'
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
 	return render_template("ocr.html")
-
-# @app.route('/ocr')
-# def classify():
-# 	return render_template("ocr.html")
-
 @app.route('/ocr', methods=['POST'])
 def ocr_address():
-	if request.method == 'POST':
-		raw_text = request.form['raw_text']
-		# results = classifier.predict("model/", "image_test2/","predict.json")
-		results = address.test(raw_text)
-	return render_template("ocr.html", results=results,raw_text=raw_text)
-
+	if request.method == "POST":
+		image = request.files['image']
+		name_img = secure_filename(image.filename)
+		image = Image.open(image)
+		image.save(path + 'image_dow/'+ 'pic1'+'.jpg')
+		results = address.predict(path + "model/",path + "image_dow/", path +"predict.json")
+	return render_template("ocr.html", results = results, raw_text = name_img)
+	
+	# height = 64
+	# width  = 1280
+	# results = 0
+	# # if request.files.get("image"):
+	# if request.method == 'POST':
+	# 	# get name picture
+	# 	#get file image :user upload
+	# 	image = request.files['image'].read()
+	# 	#Convert image -> array image
+	# 	image =  Image.open(io.BytesIO(image))
+	# 	# image = image.resize((height,width))
+	# 	image = img_to_array(image)
+	# 	# image = np.expand_dims(image, axis=0)
+	# 	print('image:', image.shape)
+	# 	# cv2.imshow('1.jpg',image)
+	# 	cv2.imwrite('../image_dow/'+ str(1)+'.png', image)
+		
+	
+	# 	# # Predict
+	# 	# # results = address.predict("model/",image, "predict.json")
+	# 	# results = image.shape[1]
+	# 	# print( 'shape:',image.shape)
+	# else:
+	# 	results = 120
+	# return render_template("ocr.html", results = results, raw_text = 'ngu')
 if __name__ == '__main__':
-	 app.run(debug=True)	
-	#  app.run()	
+	 app.run( threaded=False)	

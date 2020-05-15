@@ -354,7 +354,7 @@ def get_model(input_shape, training, finetune):
 def train_kfold(idx, kfold, datapath, labelpath,  epochs, batch_size, lr, finetune, name):
     sess = tf.Session()
     K.set_session(sess)
-
+    K.clear_session()
     model, y_func = get_model((*SIZE, 3), training=True, finetune=finetune)
     ada = Adam(lr=lr)
     model.compile(loss={'ctc': lambda y_true, y_pred: y_pred}, optimizer=ada)
@@ -382,6 +382,7 @@ def train_kfold(idx, kfold, datapath, labelpath,  epochs, batch_size, lr, finetu
                     callbacks=[ckp, vis, earlystop],
                     validation_data=valid_generator.next_batch(),
                     validation_steps=int(len(valid_idx) / batch_size))
+    K.clear_session()
     
 def train(datapath, labelpath, epochs, batch_size, lr, finetune=False, name='model'):
     nsplits = 5
@@ -398,28 +399,43 @@ def loadmodel(weight_path):
     return model
 
 def predict(model, datapath, output, verbose=15):
-    # sess = tf.Session()
-    # K.set_session(sess)
-    # batch_size = 3
-    # models = glob.glob('{}/best_*.h5'.format(model))
-    # test_generator  = TextImageGenerator(datapath, None, *SIZE, batch_size, 32, None, False, MAX_LEN)
-    # test_generator.build_data() # sinh ra text ='' for each image
-    
-    # y_preds = []
-    # for weight_path in models:
+    sess = tf.Session()
+    # sess = tf.compat.v1.Session()
+    # K.clear_session()
+    K.set_session(sess)
+    # Declare this as global:
+    global graph
+    graph = tf.get_default_graph()
+    # Then just before you call in your model, use this
+    with graph.as_default():
+        # call you models here
+        batch_size = 3
+        models = glob.glob('{}/best_*.h5'.format(model))
+        test_generator  = TextImageGenerator(datapath, None, *SIZE, batch_size, 32, None, False, MAX_LEN)
+        test_generator.build_data() # sinh ra text ='' for each image
         
-    #     print('load {}'.format(weight_path))
-    #     model = loadmodel(weight_path)
-    #     X_test = test_generator.imgs.transpose((0, 2, 1, 3))
-    #     y_pred = model.predict(X_test, batch_size=2)
-    #     y_preds.append(y_pred)
-    #     print(y_preds)
-    #     # for printing        
-    #     decoded_res = beamsearch(sess, y_pred[:verbose])
-        #for i in range(len(decoded_res)):
-           # print('{}: {}'.format(test_generator.img_dir[i], decoded_res[i]))
-            # return decoded_res[i]
-    return 'sjsnfns shfs '
+        y_preds = []
+        for weight_path in models:
+            
+            print('load {}'.format(weight_path))
+            model = loadmodel(weight_path)
+            X_test = test_generator.imgs.transpose((0, 2, 1, 3))
+            y_pred = model.predict(X_test, batch_size=2)
+            y_preds.append(y_pred)
+            print(y_preds)
+            # for printing        
+            decoded_res = beamsearch(sess, y_pred[:verbose])
+            if (len(y_preds)!=0):
+                y_preds = np.prod(y_preds, axis=0)**(1.0/len(y_preds))
+                y_texts = beamsearch(sess, y_preds)
+                submit = dict(zip(test_generator.img_dir, y_texts))
+                with open(output, 'w', encoding='utf-8') as jsonfile:
+                    json.dump(submit, jsonfile, indent=2, ensure_ascii=False)
+            for i in range(len(decoded_res)):
+                print('{}: {}'.format(test_generator.img_dir[i], decoded_res[i]))
+                return decoded_res[i]
+
+    # K.clear_session()
     # if(len(y_preds)!=0):    
     #     y_preds = np.prod(y_preds, axis=0)**(1.0/len(y_preds))
     #     y_texts = beamsearch(sess, y_preds)
@@ -441,6 +457,9 @@ def predict(model, datapath, output, verbose=15):
 #     predict(args.model, args.data, args.output)
 
 
-#predict("model/", "image_test2/","predict.json")
+# A= predict("model/", "image_test2/","predict.json")
+# print('type:', type(A))
+# print('predict:', A)
+# print('version',tf.__version__)
 def test(image):
     return image
