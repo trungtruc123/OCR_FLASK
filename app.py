@@ -8,10 +8,12 @@ import io
 from tensorflow.keras.preprocessing.image import img_to_array
 import cv2 
 from werkzeug.utils import secure_filename
+import os
 path = '/home/truc/Desktop/OCR_FLASK/'
+path_preview = os.path.join(path ,'image_dow')
 
 app = Flask(__name__)
-
+app.config['UPLOAD_FOLDER'] = path_preview
 @app.route('/')
 def index():
 	return render_template("ocr.html")
@@ -23,7 +25,8 @@ def ocr_address():
 		image = Image.open(image)
 		image.save(path + 'image_dow/'+ 'pic1'+'.jpg')
 		results = address.predict(path + "model/",path + "image_dow/", path +"predict.json")
-	return render_template("ocr.html", results = results, raw_text = name_img)
+		preview = os.path.join(app.config['UPLOAD_FOLDER'],'pic1.jpg')
+	return render_template("ocr.html", results = results, raw_text = name_img, preview = preview)
 	
 	# height = 64
 	# width  = 1280
