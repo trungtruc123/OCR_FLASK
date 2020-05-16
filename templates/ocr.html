@@ -1,59 +1,67 @@
-{% extends "layout.html" %}
-{% block main %}
+{% extends "layout.html" %} {% block main %}
 <head>
+  <link rel="stylesheet" href="style.css" />
   <h3>OCR VIETNAMESE</h3>
   <h4><br /></h4>
 </head>
-    <div class="container">
-    <form action='/ocr' method="POST" enctype='multipart/form-data'>
-      <div class="form-group">
-        <form runat="server">
-        <input type='file' accept="image/*" id="image" name="image" multiple/>
-        </form>
-        <br/>
-        <input type='button' value ='Upload' id ='btn' onclick="upload()" />
-        <img id ='preview' style="width: 1000px;height: 50px;"/>
-        <br/>
-        <br/>
-        <button type="reset" class="btn btn-primary"><i class="fa fa-eraser"></i> Clear</button>
-        <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
-
-      </div>
-    </form>
-  </div>
-  <br/>
-  <div class="container">
-    <div class="alert alert-success" role="alert">
-
-      <p class="input">Input image:</p>
-        <div>{{raw_text}}</div>
-      <br />
-      <p class="alert-heading">Predict:</p>
-        <div>{{results}}</div>
+<div class="container">
+  <form action="/ocr" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <form runat="server">
+        <input
+          type="file"
+          accept="image/*"
+          id="image"
+          name="image"
+          value="Choose File"
+          multiple
+          onchange="upload()"
+        />
+      </form>
       <br />
 
+      <img id="preview" />
+      <br />
+      <br />
+      <button type="reset" class="btn btn-primary">
+        <i class="fa fa-eraser"></i> Clear
+      </button>
+      <button type="submit" class="btn btn-info">
+        <i class="fa fa-database"></i> Submit
+      </button>
     </div>
+  </form>
+</div>
+<br />
+<div class="container">
+  <div class="alert alert-success" role="alert">
+    <p class="input">Input image:</p>
+    <div>{{raw_text}}</div>
+    <br />
+    <p class="alert-heading">Predict:</p>
+    <div>{{results}}</div>
+    <br />
   </div>
-  <br />
-  <script>
-      var x;
-      function upload() {
-        var file = document.getElementById("image").files;
-        console.log('file',file)
-        if (file.length >0) {
-          var fileReader = new FileReader();
-          fileReader.onload = function (event) {
-            document
-              .getElementById("preview")
-              .setAttribute("src", event.target.result);
-          };
-        }
-        fileReader.readAsDataURL(file[0]);
-        x = file[0].name;
-        return x;
-      }
-      console.log((x = upload()));
-  </script>
-  <footer class="small text-center text-muted">
-  </footer>
+</div>
+<br />
+<script>
+  var x;
+  function upload() {
+    var file = document.getElementById("image").files;
+    console.log("file", file);
+    if (file.length > 0) {
+      var fileReader = new FileReader();
+      fileReader.onload = function (event) {
+        document
+          .getElementById("preview")
+          .setAttribute("src", event.target.result);
+      };
+    }
+    fileReader.readAsDataURL(file[0]);
+    x = file[0].name;
+    return x;
+  }
+  console.log((x = upload()));
+</script>
+<footer class="small text-center text-muted"></footer>
 {% endblock %}
