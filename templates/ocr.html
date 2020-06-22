@@ -7,9 +7,36 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
     crossorigin="anonymous"
   />
-  <h3>OCR VIETNAMESE</h3>
+
   <h4><br /></h4>
 </head>
+<!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="/">Optical Character Regconition Vietnamese</a>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/classifier">Import Form</a>
+      </li>
+    </ul>
+
+    <form class="form-inline my-2 my-lg-0">
+      <input
+        class="form-control mr-sm-2"
+        type="text"
+        placeholder="Search"
+        aria-label="Fuck"
+      />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+</nav> -->
+<div class="title">
+  <h1>OCR Vietnamese</h1>
+</div>
+
 <div class="container">
   <form action="/ocr" method="POST" enctype="multipart/form-data">
     <div class="form-group">
@@ -22,7 +49,6 @@
           value="Choose File"
           multiple
           onchange="upload()"
-          class="btn btn-info"
         />
       </form>
       <br />
@@ -38,18 +64,123 @@
       </button>
     </div>
   </form>
-</div>
-<br />
-<div class="container">
-  <div class="alert alert-success" role="alert">
-    <p class="input">Input image:</p>
-    <div>{{raw_text}}</div>
-    <br />
-    <p class="alert-heading">Predict:</p>
-    <div>{{results}}</div>
-    <br />
+
+  <div class="model">
+    <div class="alert alert-success" role="alert">
+      <h3>MODEL 1</h3>
+      <p class="currency">Currency:</p>
+      <div>{{raw_text}}</div>
+      <br />
+      <p class="alert-heading">Predict:</p>
+      <div>
+        <p>HỌ TÊN:</p>
+        {{name}}
+      </div>
+      <div>
+        <p>ĐỊA CHỈ:</p>
+        {{address}}
+      </div>
+      <div>
+        <p>CHỨNG MINH NHÂN DÂN:</p>
+        {{ID}}
+      </div>
+      <br />
+    </div>
+  </div>
+  <div class="model">
+    <div class="alert alert-success" role="alert">
+      <h3>MODEL 2</h3>
+      <p class="currency">Currency:</p>
+      <div>{{raw_text}}</div>
+      <br />
+      <p class="alert-heading">Predict:</p>
+      <div>
+        <p>HỌ TÊN:</p>
+        {{name}}
+      </div>
+      <div>
+        <p>ĐỊA CHỈ:</p>
+        {{address}}
+      </div>
+      <div>
+        <p>CHỨNG MINH NHÂN DÂN:</p>
+        {{ID}}
+      </div>
+      <br />
+    </div>
+  </div>
+  <div class="model">
+    <div class="alert alert-success" role="alert">
+      <h3>MODEL 3</h3>
+      <p class="currency">Currency:</p>
+      <div>{{raw_text}}</div>
+      <br />
+      <p class="alert-heading">Predict:</p>
+      <div>
+        <p>HỌ TÊN:</p>
+        {{name}}
+      </div>
+      <div>
+        <p>ĐỊA CHỈ:</p>
+        {{address}}
+      </div>
+      <div>
+        <p>CHỨNG MINH NHÂN DÂN:</p>
+        {{ID}}
+      </div>
+      <br />
+    </div>
   </div>
 </div>
+
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-left">
+    <!-- Grid row -->
+    <div class="row">
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 mt-3">
+        <!-- Content -->
+        <h5 class="text-uppercase">Footer Content</h5>
+        <p>
+          Here you can use rows and columns to organize your footer content.
+        </p>
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3" />
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+        <!-- Links -->
+        <h5 class="text-uppercase">Links</h5>
+
+        <ul class="list-unstyled"></ul>
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+        <!-- Links -->
+        <h5 class="text-uppercase">Links</h5>
+      </div>
+      <!-- Grid column -->
+    </div>
+    <!-- Grid row -->
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">
+    © 2020 Copyright:
+    <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+Supported content
 <br />
 <script>
   var x;
