@@ -24,6 +24,7 @@ Hoàn thành các nhiệm vụ được phân công đúng tiến độ
 - Phan Thành Trung -16T2
 - Võ Văn Phúc     -16T3
 ## 2.4. Data train, pretrain_model:
+* Link driver: https://drive.google.com/drive/folders/1sLmY2FHFRHH5oC4k9_yuQdUs-oNvwaLK?fbclid=IwAR2_Ws7fTblHkbvp6YQ94RVoDFl9IJw2QqcVAzurjlk27JROIWKQDzW0ws8
 * Liên hệ: fb: https://www.facebook.com/profile.php?id=100038801181933
 # 3. Giao diện ứng dụng
 ** Giao diện regconition address **
